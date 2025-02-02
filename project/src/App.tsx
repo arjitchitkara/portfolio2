@@ -245,7 +245,11 @@ function App() {
   }, [history]);
 
   useEffect(() => {
-    handleCommand('help');
+    const initialRender = sessionStorage.getItem('initialRender');
+    if (!initialRender) {
+      handleCommand('help');
+      sessionStorage.setItem('initialRender', 'true');
+    }
   }, []);
 
   const focusInput = () => {
