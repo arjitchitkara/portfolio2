@@ -64,7 +64,6 @@ function App() {
           <CommandButton command="about" icon={Code} description="Learn more about me" />
           <CommandButton command="projects" icon={Cpu} description="View my projects" />
           <CommandButton command="skills" icon={Database} description="See my technical skills" />
-          <CommandButton command="education" icon={GraduationCap} description="View my educational background" />
           <CommandButton command="contact" icon={Mail} description="Get my contact info" />
         </div>
       </div>
@@ -358,6 +357,11 @@ function App() {
     return lines.join('\n');
   };
 
+  // Add a refresh function
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-4 md:p-8 font-mono" onClick={focusInput}>
       <div className="matrix-bg" />
@@ -376,7 +380,13 @@ function App() {
           {/* Terminal Header */}
           <div className="bg-gray-800/90 p-4 rounded-t-lg border-b border-gray-700 flex items-center">
             <div className="window-controls">
-              <div className="window-control close" />
+              <div 
+                className="window-control close cursor-pointer hover:opacity-80 transition-opacity" 
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent the click from bubbling to the parent
+                  refreshPage();
+                }}
+              />
               <div className="window-control minimize" />
               <div className="window-control maximize" />
             </div>
