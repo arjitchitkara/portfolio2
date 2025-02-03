@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal, Linkedin, Mail, ExternalLink, Command, ChevronRight, Code, Cpu, Database, MonitorDot } from 'lucide-react';
+import { Terminal, Linkedin, Mail, ExternalLink, Command, ChevronRight, Code, Cpu, Database, MonitorDot, GraduationCap } from 'lucide-react';
 
 type Command = {
   command: string;
@@ -64,6 +64,7 @@ function App() {
           <CommandButton command="about" icon={Code} description="Learn more about me" />
           <CommandButton command="projects" icon={Cpu} description="View my projects" />
           <CommandButton command="skills" icon={Database} description="See my technical skills" />
+          <CommandButton command="education" icon={GraduationCap} description="View my educational background" />
           <CommandButton command="contact" icon={Mail} description="Get my contact info" />
         </div>
       </div>
@@ -86,22 +87,30 @@ function App() {
           </div>
         </div>
         <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow">
-          <p className="text-emerald-400 font-bold text-lg mb-4">Education</p>
-          <div className="space-y-2">
-            <p className="text-gray-300 text-lg">Computer Science @ [Your University]</p>
-            <p className="text-gray-400">Expected Graduation: [Year]</p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">
-                Data Structures
-              </span>
-              <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">
-                Algorithms
-              </span>
-              <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">
-                Software Engineering
-              </span>
+          <div className="space-y-4">
+            <div className="flex items-center space-x-3">
+              <GraduationCap className="h-6 w-6 text-emerald-400" />
+              <h2 className="text-emerald-400 font-bold text-lg">Education</h2>
+            </div>
+            <div className="ml-9 space-y-2">
+              <p className="text-gray-200">University of Calgary</p>
+              <p className="text-gray-200">Bachelor of Science in Computer Science — GPA: 3.8</p>
+              <ul className="list-disc text-gray-300 ml-5 space-y-1">
+                <li>Dean's List: 2022-2023, 2023-2024</li>
+                <li>Computer Science Alumni Chapter Undergraduate Scholarship (2024)</li>
+                <li>UCalgary Chinese Students & Scholars Association (UCCSSA) Award (2023, 2024)</li>
+                <li>University of Calgary International Entrance Award (2022)</li>
+              </ul>
             </div>
           </div>
+        </div>
+        <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow">
+          <p className="text-emerald-400 font-bold text-lg mb-4">Experience</p>
+          {/* ... rest of experience section ... */}
+        </div>
+        <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow">
+          <p className="text-emerald-400 font-bold text-lg mb-4">Technologies</p>
+          {/* ... rest of technologies section ... */}
         </div>
       </div>
     ),
@@ -262,7 +271,12 @@ function App() {
   };
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    // Small delay to ensure content is rendered before scrolling
+    const timeoutId = setTimeout(() => {
+      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
   }, [history]);
 
   useEffect(() => {
@@ -283,6 +297,8 @@ function App() {
         currentChar += 3;
       } else {
         clearInterval(interval);
+        // Scroll to bottom when animation completes
+        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
       }
     }, 5);
 
