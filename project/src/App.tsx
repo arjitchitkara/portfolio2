@@ -105,8 +105,45 @@ function App() {
           </div>
         </div>
         <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow">
-          <p className="text-emerald-400 font-bold text-lg mb-4">Experience</p>
-          {/* ... rest of experience section ... */}
+          <div className="flex items-center space-x-3">
+            <MonitorDot className="h-6 w-6 text-emerald-400" />
+            <h2 className="text-emerald-400 font-bold text-lg">Experience</h2>
+          </div>
+          <div className="ml-9 mt-4 space-y-6">
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="text-gray-200 font-bold">Web Developer Intern</h3>
+                <span className="text-gray-400 text-sm">April 2024 - July 2024</span>
+              </div>
+              <p className="text-gray-300 mb-2">Indian Institute of Technology</p>
+              <div className="space-y-2">
+                <ul className="list-disc text-gray-300 ml-5 space-y-2">
+                  <li>
+                    <span className="text-emerald-400 font-medium">Situation:</span> Led the development of a React.js Weather Dashboard for real-time environmental monitoring.
+                    <span className="text-emerald-400 font-medium"> Task:</span> Create an intuitive interface for displaying complex sensor data.
+                    <span className="text-emerald-400 font-medium"> Action:</span> Implemented responsive UI components and real-time data visualization.
+                    <span className="text-emerald-400 font-medium"> Result:</span> Achieved 100% improvement in data visibility for end-users.
+                  </li>
+                  <li>
+                    <span className="text-emerald-400 font-medium">Challenge:</span> High server load during peak usage.
+                    <span className="text-emerald-400 font-medium"> Solution:</span> Implemented Tanstack React Query for optimized data caching and state management, resulting in 30% reduced server load and improved performance.
+                  </li>
+                  <li>
+                    <span className="text-emerald-400 font-medium">Technical Achievement:</span> Engineered efficient API integration using Axios, implementing strategic error handling and data transformation, leading to 20% faster data retrieval speeds.
+                  </li>
+                  <li>
+                    <span className="text-emerald-400 font-medium">Impact:</span> Developed the "Comfort Zone Monitor" feature with intuitive UI/UX design principles, driving a 25% increase in user engagement and positive feedback.
+                  </li>
+                </ul>
+                <div className="flex flex-wrap gap-2 mt-3">
+                  <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">React.js</span>
+                  <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">Tanstack Query</span>
+                  <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">Axios</span>
+                  <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">API Integration</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow">
           <p className="text-emerald-400 font-bold text-lg mb-4">Technologies</p>
