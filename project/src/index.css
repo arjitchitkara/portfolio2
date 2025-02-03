@@ -3,31 +3,53 @@
 @tailwind utilities;
 
 @keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 @keyframes pulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
 }
 
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 body {
   margin: 0;
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(-45deg, #1a1a1a, #2d3748, #1a365d, #1a1a1a);
@@ -38,15 +60,13 @@ body {
 
 .terminal-window {
   backdrop-filter: blur(12px);
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3),
-              0 0 80px rgba(74, 222, 128, 0.1);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3), 0 0 80px rgba(74, 222, 128, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .terminal-window:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.4),
-              0 0 100px rgba(74, 222, 128, 0.15);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.4), 0 0 100px rgba(74, 222, 128, 0.15);
 }
 
 .glow {
@@ -54,7 +74,7 @@ body {
 }
 
 .glow::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -81,7 +101,7 @@ body {
 }
 
 .command-prompt::before {
-  content: '';
+  content: "";
   position: absolute;
   left: -20px;
   top: 50%;
@@ -152,7 +172,7 @@ body {
 }
 
 .window-control::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -175,4 +195,15 @@ body {
 
 .window-control:hover::before {
   opacity: 1;
+}
+
+.help-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.help-logo {
+  margin-bottom: 1rem;
 }
