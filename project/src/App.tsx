@@ -685,15 +685,6 @@ function App() {
     window.location.reload();
   };
 
-  // Add the useEffect for smooth scrolling
-  useEffect(() => {
-    const terminal = document.querySelector('.terminal-window');
-    terminal?.scrollTo({
-      top: terminal.scrollHeight,
-      behavior: 'smooth'
-    });
-  }, [history]);
-
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-4 md:p-8 font-mono">
       <div className="matrix-bg" />
@@ -731,7 +722,7 @@ function App() {
           </div>
 
           {/* Terminal Body */}
-          <div className="p-6 space-y-6 min-h-[600px] max-h-[80vh] overflow-y-auto" onClick={() => focusInput()}>
+          <div className="p-6 space-y-6 min-h-[600px]" onClick={() => focusInput()}>
             <pre className="text-emerald-400 text-sm leading-tight">
               {`${getPartialArt()}
 
