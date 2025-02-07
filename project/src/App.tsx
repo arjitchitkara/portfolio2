@@ -42,7 +42,7 @@ const asciiArtLines = [
 
 // Memoize the command output component
 const CommandOutput = memo(({ entry, currentPath }) => (
-  <div className="space-y-3">
+  <div className="space-y-3" data-command={entry.command}>
     <div className="flex items-center text-sm command-prompt">
       <span className="text-gray-500">[{entry.timestamp}]</span>
       <span className="text-emerald-400 ml-2">@portfolio</span>
