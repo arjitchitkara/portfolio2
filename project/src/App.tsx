@@ -46,6 +46,7 @@ function App() {
   const [currentPath] = useState('~');
   const inputRef = useRef<HTMLInputElement>(null);
   const [visibleChars, setVisibleChars] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getTimestamp = () => {
     return new Date().toLocaleTimeString('en-US', { 
@@ -283,16 +284,22 @@ function App() {
 
             <div className="flex space-x-4 mt-2">
               <button
-                onClick={() => window.open('https://exchange-ten-flame.vercel.app/', '_blank')}
-                className="flex items-center space-x-2 px-4 py-2 bg-emerald-400/20 text-emerald-400 rounded-lg hover:bg-emerald-400/30 transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open('https://exchange-ten-flame.vercel.app/', '_blank');
+                }}
+                className="flex items-center space-x-2 px-4 py-2 bg-emerald-400/20 text-emerald-400 rounded-lg hover:bg-emerald-400/30 hover:scale-105 transition-all duration-200"
               >
                 <ExternalLink className="h-4 w-4" />
                 <span>Live Demo</span>
               </button>
 
               <button
-                onClick={() => window.open('https://github.com/arjitchitkara/Exchange', '_blank')}
-                className="flex items-center space-x-2 px-4 py-2 bg-emerald-400/20 text-emerald-400 rounded-lg hover:bg-emerald-400/30 transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open('https://github.com/arjitchitkara/Exchange', '_blank');
+                }}
+                className="flex items-center space-x-2 px-4 py-2 bg-emerald-400/20 text-emerald-400 rounded-lg hover:bg-emerald-400/30 hover:scale-105 transition-all duration-200"
               >
                 <Github className="h-4 w-4" />
                 <span>Source Code</span>
@@ -353,8 +360,11 @@ function App() {
 
             <div className="flex space-x-4 mt-2">
               <button
-                onClick={() => window.open('https://github.com/arjitchitkara/wallet.git', '_blank')}
-                className="flex items-center space-x-2 px-4 py-2 bg-emerald-400/20 text-emerald-400 rounded-lg hover:bg-emerald-400/30 transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open('https://github.com/arjitchitkara/wallet.git', '_blank');
+                }}
+                className="flex items-center space-x-2 px-4 py-2 bg-emerald-400/20 text-emerald-400 rounded-lg hover:bg-emerald-400/30 hover:scale-105 transition-all duration-200"
               >
                 <Github className="h-4 w-4" />
                 <span>Source Code</span>
@@ -416,8 +426,11 @@ function App() {
 
             <div className="flex space-x-4 mt-2">
               <button
-                onClick={() => window.open('https://github.com/arjitchitkara/Zapier.git', '_blank')}
-                className="flex items-center space-x-2 px-4 py-2 bg-emerald-400/20 text-emerald-400 rounded-lg hover:bg-emerald-400/30 transition-colors"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open('https://github.com/arjitchitkara/Zapier.git', '_blank');
+                }}
+                className="flex items-center space-x-2 px-4 py-2 bg-emerald-400/20 text-emerald-400 rounded-lg hover:bg-emerald-400/30 hover:scale-105 transition-all duration-200"
               >
                 <Github className="h-4 w-4" />
                 <span>Source Code</span>
@@ -602,12 +615,13 @@ function App() {
     ]);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!input.trim()) return;
-
-    handleCommand(input);
-    setInput('');
+    const trimmedCommand = input.trim();
+    if (trimmedCommand) {
+      handleCommand(trimmedCommand);
+      setInput('');
+    }
   };
 
   // Run "help" on first load
@@ -630,8 +644,6 @@ function App() {
         currentChar += 3;
       } else {
         clearInterval(interval);
-        // Scroll to bottom when animation completes
-        bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
       }
     }, 5);
 
@@ -657,6 +669,15 @@ function App() {
   const refreshPage = () => {
     window.location.reload();
   };
+
+  // Add the useEffect for smooth scrolling
+  useEffect(() => {
+    const terminal = document.querySelector('.terminal-window');
+    terminal?.scrollTo({
+      top: terminal.scrollHeight,
+      behavior: 'smooth'
+    });
+  }, [history]);
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-4 md:p-8 font-mono">
@@ -727,18 +748,16 @@ function App() {
 
             {/* Input line */}
             <form onSubmit={handleSubmit} className="flex items-center text-sm command-prompt">
-              <span className="text-gray-500">[{getTimestamp()}]</span>
-              <span className="text-emerald-400 ml-2">@portfolio</span>
-              <span className="text-gray-500">:</span>
-              <span className="text-blue-400">{currentPath}</span>
-              <ChevronRight className="h-4 w-4 text-emerald-400 mx-1" />
+              {isLoading && <span className="animate-pulse mr-2">⚡</span>}
+              <span className="text-emerald-400">➜</span>
+              <span className="text-blue-400 ml-2">~</span>
+              <span className="text-emerald-400 ml-2">$</span>
               <input
-                ref={inputRef}
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="flex-1 bg-transparent outline-none text-gray-300"
-                autoFocus
+                className="flex-1 ml-2 bg-transparent text-gray-300 outline-none"
+                ref={inputRef}
               />
             </form>
           </div>
