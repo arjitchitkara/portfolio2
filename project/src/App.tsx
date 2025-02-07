@@ -73,6 +73,34 @@ function App() {
     });
   };
 
+  const handleCommand = (cmd: string) => {
+    const normalizedCmd = cmd.toLowerCase().trim();
+    
+    if (normalizedCmd === 'clear') {
+      setHistory([]);
+      return;
+    }
+
+    // If command is recognized, display its component;
+    // otherwise, "Command not found".
+    const output =
+      commands[normalizedCmd as keyof typeof commands] || (
+        <p className="text-red-400">
+          Command not found. Type 'help' for available commands.
+        </p>
+      );
+
+    // Add to existing history
+    setHistory((prev) => [
+      ...prev,
+      {
+        command: cmd,
+        output,
+        timestamp: getTimestamp(),
+      }
+    ]);
+  };
+
   const CommandButton = ({
     command,
     icon: Icon,
@@ -85,7 +113,16 @@ function App() {
     <button
       onClick={() => {
         handleCommand(command);
-        setTimeout(() => handleCommand('help'), 100);
+        // Add help menu after command
+        setTimeout(() => {
+          handleCommand('help');
+          // After both command and help are added, scroll to the command output
+          setTimeout(() => {
+            const elements = document.querySelectorAll(`[data-command="${command}"]`);
+            const lastElement = elements[elements.length - 1];
+            lastElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }, 100);
       }}
       className="bg-gray-800/50 p-4 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow w-full text-left"
     >
@@ -605,33 +642,6 @@ function App() {
         </div>
       </div>
     ),
-  };
-
-  const handleCommand = (cmd: string) => {
-    const normalizedCmd = cmd.toLowerCase().trim();
-    
-    if (normalizedCmd === 'clear') {
-      setHistory([]);
-      return;
-    }
-
-    // If command is recognized, display its component;
-    // otherwise, "Command not found".
-    const output =
-      commands[normalizedCmd as keyof typeof commands] || (
-        <p className="text-red-400">
-          Command not found. Type 'help' for available commands.
-        </p>
-      );
-
-    setHistory((prev) => [
-      ...prev,
-      {
-        command: cmd,
-        output,
-        timestamp: getTimestamp(),
-      },
-    ]);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
