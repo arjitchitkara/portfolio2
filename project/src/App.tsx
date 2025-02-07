@@ -725,7 +725,7 @@ function App() {
               <div key={i} className="space-y-3">
                 <div className="flex items-center text-sm command-prompt">
                   <span className="text-gray-500">[{entry.timestamp}]</span>
-                  <span className="text-emerald-400 ml-2">guest@portfolio</span>
+                  <span className="text-emerald-400 ml-2">@portfolio</span>
                   <span className="text-gray-500">:</span>
                   <span className="text-blue-400">{currentPath}</span>
                   <ChevronRight className="h-4 w-4 text-emerald-400 mx-1" />
@@ -738,7 +738,7 @@ function App() {
             {/* Input line */}
             <form onSubmit={handleSubmit} className="flex items-center text-sm command-prompt">
               <span className="text-gray-500">[{getTimestamp()}]</span>
-              <span className="text-emerald-400 ml-2">guest@portfolio</span>
+              <span className="text-emerald-400 ml-2">@portfolio</span>
               <span className="text-gray-500">:</span>
               <span className="text-blue-400">{currentPath}</span>
               <ChevronRight className="h-4 w-4 text-emerald-400 mx-1" />
