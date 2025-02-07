@@ -145,8 +145,57 @@ function App() {
           </div>
         </div>
         <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow">
-          <p className="text-emerald-400 font-bold text-lg mb-4">Technologies</p>
-          {/* ... rest of technologies section ... */}
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="w-8 h-8 rounded bg-emerald-400/20 flex items-center justify-center">
+              <Code className="h-4 w-4 text-emerald-400" />
+            </div>
+            <p className="text-emerald-400 font-bold text-lg">Technical Skills</p>
+          </div>
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <div className="group">
+                <div className="flex items-center mb-2">
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full mr-2"></div>
+                  <p className="text-emerald-300 font-medium">Languages</p>
+                </div>
+                <div className="flex flex-wrap gap-2 ml-4">
+                  {["Java", "Python", "JavaScript", "TypeScript", "C/C++"].map((skill) => (
+                    <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="group">
+                <div className="flex items-center mb-2">
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full mr-2"></div>
+                  <p className="text-emerald-300 font-medium">Frameworks & Libraries</p>
+                </div>
+                <div className="flex flex-wrap gap-2 ml-4">
+                  {["React", "Node.js", "Express", "Next.js", "FastAPI"].map((skill) => (
+                    <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="group">
+                <div className="flex items-center mb-2">
+                  <div className="w-2 h-2 bg-emerald-400 rounded-full mr-2"></div>
+                  <p className="text-emerald-300 font-medium">DevOps & Cloud</p>
+                </div>
+                <div className="flex flex-wrap gap-2 ml-4">
+                  {["Docker", "Kubernetes", "AWS", "GCP", "Cloudflare", "Redis", "Kafka"].map((skill) => (
+                    <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     ),
@@ -191,47 +240,81 @@ function App() {
     skills: (
       <div className="mt-4 space-y-4">
         <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow">
-          <p className="text-emerald-400 font-bold text-lg mb-4">Languages</p>
-          <div className="flex flex-wrap gap-3">
-            <div className="px-4 py-2 bg-emerald-400/20 rounded-lg">
-              <div className="flex items-center space-x-2">
-                <Code className="h-4 w-4 text-emerald-400" />
-                <span className="text-emerald-400">JavaScript</span>
-              </div>
+          <div className="flex items-center space-x-3 mb-6">
+            <div className="w-8 h-8 rounded bg-emerald-400/20 flex items-center justify-center">
+              <Database className="h-4 w-4 text-emerald-400" />
             </div>
-            <div className="px-4 py-2 bg-emerald-400/20 rounded-lg">
-              <div className="flex items-center space-x-2">
-                <Code className="h-4 w-4 text-emerald-400" />
-                <span className="text-emerald-400">TypeScript</span>
-              </div>
-            </div>
-            <div className="px-4 py-2 bg-emerald-400/20 rounded-lg">
-              <div className="flex items-center space-x-2">
-                <Code className="h-4 w-4 text-emerald-400" />
-                <span className="text-emerald-400">Python</span>
-              </div>
-            </div>
+            <p className="text-emerald-400 font-bold text-lg">Skills & Expertise</p>
           </div>
-        </div>
-        <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow">
-          <p className="text-emerald-400 font-bold text-lg mb-4">Technologies</p>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-            <div className="px-4 py-2 bg-emerald-400/20 rounded-lg">
-              <div className="flex items-center space-x-2">
-                <Cpu className="h-4 w-4 text-emerald-400" />
-                <span className="text-emerald-400">React</span>
+
+          <div className="space-y-6">
+            <div className="group">
+              <div className="flex items-center mb-2">
+                <div className="w-2 h-2 bg-emerald-400 rounded-full mr-2"></div>
+                <p className="text-emerald-300 font-medium">Programming Languages</p>
+              </div>
+              <div className="flex flex-wrap gap-2 ml-4">
+                {["Java", "Python", "JavaScript", "TypeScript", "C/C++"].map((skill) => (
+                  <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
-            <div className="px-4 py-2 bg-emerald-400/20 rounded-lg">
-              <div className="flex items-center space-x-2">
-                <Cpu className="h-4 w-4 text-emerald-400" />
-                <span className="text-emerald-400">Node.js</span>
+
+            <div className="group">
+              <div className="flex items-center mb-2">
+                <div className="w-2 h-2 bg-emerald-400 rounded-full mr-2"></div>
+                <p className="text-emerald-300 font-medium">Web Technologies</p>
+              </div>
+              <div className="flex flex-wrap gap-2 ml-4">
+                {["React", "Next.js", "Node.js", "Express", "TailwindCSS", "REST APIs"].map((skill) => (
+                  <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
-            <div className="px-4 py-2 bg-emerald-400/20 rounded-lg">
-              <div className="flex items-center space-x-2">
-                <Database className="h-4 w-4 text-emerald-400" />
-                <span className="text-emerald-400">MongoDB</span>
+
+            <div className="group">
+              <div className="flex items-center mb-2">
+                <div className="w-2 h-2 bg-emerald-400 rounded-full mr-2"></div>
+                <p className="text-emerald-300 font-medium">Cloud & DevOps</p>
+              </div>
+              <div className="flex flex-wrap gap-2 ml-4">
+                {["AWS", "Docker", "Kubernetes", "CI/CD", "GCP", "Cloudflare"].map((skill) => (
+                  <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="group">
+              <div className="flex items-center mb-2">
+                <div className="w-2 h-2 bg-emerald-400 rounded-full mr-2"></div>
+                <p className="text-emerald-300 font-medium">Databases</p>
+              </div>
+              <div className="flex flex-wrap gap-2 ml-4">
+                {["PostgreSQL", "MongoDB", "MySQL", "Redis", "Prisma"].map((skill) => (
+                  <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="group">
+              <div className="flex items-center mb-2">
+                <div className="w-2 h-2 bg-emerald-400 rounded-full mr-2"></div>
+                <p className="text-emerald-300 font-medium">Tools & Others</p>
+              </div>
+              <div className="flex flex-wrap gap-2 ml-4">
+                {["Git", "VS Code", "Postman", "Figma", "Jenkins", "Jira"].map((skill) => (
+                  <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
