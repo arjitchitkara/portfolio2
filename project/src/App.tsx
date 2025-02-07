@@ -90,15 +90,12 @@ function App() {
         </p>
       );
 
-    // Add to existing history
-    setHistory((prev) => [
-      ...prev,
-      {
-        command: cmd,
-        output,
-        timestamp: getTimestamp(),
-      }
-    ]);
+    // Always append to history
+    setHistory((prev) => [...prev, {
+      command: cmd,
+      output,
+      timestamp: getTimestamp(),
+    }]);
   };
 
   const CommandButton = ({
@@ -109,30 +106,45 @@ function App() {
     command: string;
     icon: any;
     description: string;
-  }) => (
-    <button
-      onClick={() => {
-        handleCommand(command);
-        // Add help menu after command
+  }) => {
+    const handleClick = () => {
+      // Get current scroll position
+      const scrollPosition = window.scrollY;
+      
+      handleCommand(command);
+      
+      // Add help menu after command
+      setTimeout(() => {
+        handleCommand('help');
+        // After both command and help are added, scroll to the new command
         setTimeout(() => {
-          handleCommand('help');
-          // After both command and help are added, scroll to the command output
-          setTimeout(() => {
-            const elements = document.querySelectorAll(`[data-command="${command}"]`);
-            const lastElement = elements[elements.length - 1];
-            lastElement?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 100);
+          const elements = document.querySelectorAll(`[data-command="${command}"]`);
+          const lastElement = elements[elements.length - 1];
+          if (lastElement) {
+            const rect = lastElement.getBoundingClientRect();
+            const absoluteTop = rect.top + window.scrollY;
+            window.scrollTo({
+              top: absoluteTop,
+              behavior: 'smooth'
+            });
+          }
         }, 100);
-      }}
-      className="bg-gray-800/50 p-4 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow w-full text-left"
-    >
-      <div className="flex items-center space-x-2 mb-2">
-        <Icon className="h-5 w-5 text-emerald-400" />
-        <p className="text-emerald-400 font-bold">{command}</p>
-      </div>
-      <p className="text-gray-400 text-sm">{description}</p>
-    </button>
-  );
+      }, 100);
+    };
+
+    return (
+      <button
+        onClick={handleClick}
+        className="bg-gray-800/50 p-4 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow w-full text-left"
+      >
+        <div className="flex items-center space-x-2 mb-2">
+          <Icon className="h-5 w-5 text-emerald-400" />
+          <p className="text-emerald-400 font-bold">{command}</p>
+        </div>
+        <p className="text-gray-400 text-sm">{description}</p>
+      </button>
+    );
+  };
 
   // Replace these placeholders with real info/links if needed.
   const commands = {
