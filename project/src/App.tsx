@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal, Linkedin, Mail, ExternalLink, Command, ChevronRight, Code, Cpu, Database, MonitorDot, GraduationCap } from 'lucide-react';
+import { Terminal, Linkedin, Mail, ExternalLink, Command, ChevronRight, Code, Cpu, Database, MonitorDot, GraduationCap, Github } from 'lucide-react';
 
 type Command = {
   command: string;
@@ -207,15 +207,58 @@ function App() {
               <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center">
                 <Cpu className="h-5 w-5 text-emerald-400" />
               </div>
-              <p className="text-lg font-bold text-emerald-400">Project 1</p>
+              <p className="text-lg font-bold text-emerald-400">Cryptocurrency Exchange Platform</p>
             </div>
-            <ExternalLink className="h-5 w-5 text-emerald-400" />
+            <div className="flex space-x-3">
+              <a 
+                href="https://exchange-ten-flame.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="View Live Site"
+                className="p-2 rounded-lg hover:bg-emerald-400/20 transition-all duration-200 group"
+              >
+                <ExternalLink className="h-5 w-5 text-emerald-400 group-hover:text-emerald-300" />
+              </a>
+              <a 
+                href="https://github.com/arjitchitkara/Exchange"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="View Source Code"
+                className="p-2 rounded-lg hover:bg-emerald-400/20 transition-all duration-200 group"
+              >
+                <Github className="h-5 w-5 text-emerald-400 group-hover:text-emerald-300" />
+              </a>
+            </div>
           </div>
-          <p className="text-gray-300 mb-4">Description of your first project with detailed explanation of the technologies used and problems solved.</p>
-          <div className="flex flex-wrap gap-2">
-            <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">React</span>
-            <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">Node.js</span>
-            <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">MongoDB</span>
+          
+          <div className="space-y-4">
+            <p className="text-gray-300">
+              A real-time cryptocurrency trading platform inspired by Binance, featuring live market data visualization and WebSocket integration.
+            </p>
+            
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2">
+                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+                <p className="text-gray-300 text-sm">Built real-time order book and depth chart visualization using WebSocket</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+                <p className="text-gray-300 text-sm">Implemented dynamic market pair routing and trading interface</p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+                <p className="text-gray-300 text-sm">Developed proxy service with caching for optimal API performance</p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2 mt-4">
+              <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">Next.js 14</span>
+              <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">TypeScript</span>
+              <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">WebSocket</span>
+              <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">Node.js</span>
+              <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">TailwindCSS</span>
+              <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">Express</span>
+            </div>
           </div>
         </div>
         <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow">
