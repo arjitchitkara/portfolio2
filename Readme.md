@@ -2,7 +2,7 @@
 
 A unique terminal-style portfolio website built with React, TypeScript, and TailwindCSS. This interactive portfolio simulates a command-line interface while showcasing projects and skills in a modern, engaging way.
 
-![Terminal Portfolio Demo](https://raw.githubusercontent.com/arjitchitkara/portfolio/main/docs/demo.png)
+(https://www.arjitchitkara.me/)
 
 ## ✨ Features
 

@@ -44,7 +44,6 @@ function App() {
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<Command[]>([]);
   const [currentPath] = useState('~');
-  const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const [visibleChars, setVisibleChars] = useState<number>(0);
 
@@ -611,15 +610,6 @@ function App() {
     setInput('');
   };
 
-  useEffect(() => {
-    // Small delay to ensure content is rendered before scrolling
-    const timeoutId = setTimeout(() => {
-      bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-
-    return () => clearTimeout(timeoutId);
-  }, [history]);
-
   // Run "help" on first load
   useEffect(() => {
     const initialRender = sessionStorage.getItem('initialRender');
@@ -751,8 +741,6 @@ function App() {
                 autoFocus
               />
             </form>
-            {/* Scroll anchor */}
-            <div ref={bottomRef} />
           </div>
         </div>
       </div>
