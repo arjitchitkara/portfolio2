@@ -62,6 +62,7 @@ function App() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [visibleChars, setVisibleChars] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
+  const initialRenderRef = useRef(false);
 
   const getTimestamp = () => {
     return new Date().toLocaleTimeString('en-US', { 
@@ -82,7 +83,10 @@ function App() {
     description: string;
   }) => (
     <button
-      onClick={() => handleCommand(command)}
+      onClick={() => {
+        handleCommand(command);
+        setTimeout(() => handleCommand('help'), 100);
+      }}
       className="bg-gray-800/50 p-4 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow w-full text-left"
     >
       <div className="flex items-center space-x-2 mb-2">
@@ -639,12 +643,11 @@ function App() {
     }
   };
 
-  // Run "help" on first load
+  // Run "help" on every load
   useEffect(() => {
-    const initialRender = sessionStorage.getItem('initialRender');
-    if (!initialRender) {
+    if (!initialRenderRef.current) {
       handleCommand('help');
-      sessionStorage.setItem('initialRender', 'true');
+      initialRenderRef.current = true;
     }
   }, []);
 
@@ -745,14 +748,16 @@ function App() {
             {/* Input line */}
             <form onSubmit={handleSubmit} className="flex items-center text-sm command-prompt">
               {isLoading && <span className="animate-pulse mr-2">⚡</span>}
-              <span className="text-emerald-400">➜</span>
-              <span className="text-blue-400 ml-2">~</span>
-              <span className="text-emerald-400 ml-2">$</span>
+              <span className="text-gray-500">[{getTimestamp()}]</span>
+              <span className="text-emerald-400 ml-2">@portfolio</span>
+              <span className="text-gray-500">:</span>
+              <span className="text-blue-400">{currentPath}</span>
+              <ChevronRight className="h-4 w-4 text-emerald-400 mx-1" />
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="flex-1 ml-2 bg-transparent text-gray-300 outline-none"
+                className="flex-1 bg-transparent text-gray-300 outline-none"
                 ref={inputRef}
               />
             </form>
