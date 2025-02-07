@@ -231,7 +231,7 @@ function App() {
     ),
     projects: (
       <div className="mt-4 space-y-4">
-        {/* Project 1 */}
+        {/* Crypto Exchange Project - keeping the live demo */}
         <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors">
           <div className="flex flex-col space-y-4">
             <div className="flex items-center space-x-3">
@@ -248,15 +248,27 @@ function App() {
             <div className="space-y-2">
               <div className="flex items-center space-x-2">
                 <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
-                <p className="text-gray-300 text-sm">Built real-time order book and depth chart visualization using WebSocket</p>
+                <p className="text-gray-300 text-sm">
+                  <span className="text-emerald-400/80">Situation:</span> Identified need for a user-friendly cryptocurrency trading interface with real-time data
+                </p>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
-                <p className="text-gray-300 text-sm">Implemented dynamic market pair routing and trading interface</p>
+                <p className="text-gray-300 text-sm">
+                  <span className="text-emerald-400/80">Task:</span> Develop a comprehensive trading platform with order book visualization and market data
+                </p>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
-                <p className="text-gray-300 text-sm">Developed proxy service with caching for optimal API performance</p>
+                <p className="text-gray-300 text-sm">
+                  <span className="text-emerald-400/80">Action:</span> Built WebSocket integration for real-time updates, implemented dynamic routing, created proxy service
+                </p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+                <p className="text-gray-300 text-sm">
+                  <span className="text-emerald-400/80">Result:</span> Achieved 100% uptime, real-time market data visualization, optimized API performance
+                </p>
               </div>
             </div>
 
@@ -289,33 +301,65 @@ function App() {
           </div>
         </div>
 
-        {/* Project 2 */}
-        <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow">
-          <div className="flex items-center justify-between mb-4">
+        {/* Wallet App Project */}
+        <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors">
+          <div className="flex flex-col space-y-4">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center">
-                <Database className="h-5 w-5 text-emerald-400" />
+                <Cpu className="h-5 w-5 text-emerald-400" />
               </div>
-              <p className="text-lg font-bold text-emerald-400">Project 2</p>
+              <h3 className="text-lg font-bold text-emerald-400">Secure Wallet Platform</h3>
             </div>
-            {/* Make this a clickable link as well */}
-            <a
-              href="https://example.com" // Change to your actual link
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="p-2 rounded-lg hover:bg-emerald-400/20 transition-all duration-200 group"
-            >
-              <ExternalLink className="h-5 w-5 text-emerald-400 group-hover:text-emerald-300" />
-            </a>
-          </div>
-          <p className="text-gray-300 mb-4">
-            Description of your second project showcasing your expertise in machine learning and data analysis.
-          </p>
-          <div className="flex flex-wrap gap-2">
-            <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">Python</span>
-            <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">TensorFlow</span>
-            <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">Flask</span>
+            
+            <p className="text-gray-300">
+              A modern financial platform enabling secure transactions and real-time balance tracking with zero downtime.
+            </p>
+
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2">
+                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+                <p className="text-gray-300 text-sm">
+                  <span className="text-emerald-400/80">Situation:</span> Identified need for secure, real-time financial transactions
+                </p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+                <p className="text-gray-300 text-sm">
+                  <span className="text-emerald-400/80">Task:</span> Build robust transaction processing system with PostgreSQL and Prisma
+                </p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+                <p className="text-gray-300 text-sm">
+                  <span className="text-emerald-400/80">Action:</span> Implemented real-time updates, optimized deployment with Turborepo
+                </p>
+              </div>
+              <div className="flex items-center space-x-2">
+                <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+                <p className="text-gray-300 text-sm">
+                  <span className="text-emerald-400/80">Result:</span> 30% user engagement increase, 2,000+ monthly P2P transfers, 25% faster builds
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">TypeScript</span>
+              <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">Next.js</span>
+              <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">PostgreSQL</span>
+              <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">Prisma</span>
+              <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">Turborepo</span>
+              <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">TailwindCSS</span>
+            </div>
+
+            <div className="flex space-x-4 mt-2">
+              <button
+                onClick={() => window.open('https://github.com/arjitchitkara/wallet.git', '_blank')}
+                className="flex items-center space-x-2 px-4 py-2 bg-emerald-400/20 text-emerald-400 rounded-lg hover:bg-emerald-400/30 transition-colors"
+              >
+                <GithubIcon />
+                <span>Source Code</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
