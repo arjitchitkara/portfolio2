@@ -1,5 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal, Linkedin, Mail, ExternalLink, Command, ChevronRight, Code, Cpu, Database, MonitorDot, GraduationCap, Github } from 'lucide-react';
+import {
+  Terminal,
+  Linkedin,
+  Mail,
+  ExternalLink,
+  Command,
+  ChevronRight,
+  Code,
+  Cpu,
+  Database,
+  MonitorDot,
+  GraduationCap,
+} from 'lucide-react';
 
 type Command = {
   command: string;
@@ -15,7 +27,7 @@ const asciiArtLines = [
   "⠀⠀⠀⠈⠳⣤⡾⠋⣀⣴⣿⣿⠿⠿⠟⠛⠿⠿⣿⣿⣶⣄⠙⢿⣦⠟⠁⠀⠀⠀",
   "⠀⠀⠀⢀⣾⠟⢀⣼⣿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⣿⣷⡄⠹⣷⡀⠀⠀⠀",
   "⠀⠀⠀⣾⡏⢠⣿⣿⡯⠤⠤⠤⠒⠒⠒⠒⠒⠒⠒⠤⠤⠽⣿⣿⡆⠹⣷⡀⠀⠀",
-  "⠀⠀⢸⣟⣠⡿⠿⠟⠒⣒⣒⣈⣉⣉⣉⣉⣉⣉⣉⣁⣒⣒⡛⠻⠿⢤⣹⣇⠀⠀",
+  "⠀⠀⢸⣟⣠⡿⠿⠟⠒⣒⣒⣈⣉⣉⣉⣉⣉⣉⣉⣉⣁⣒⣒⡛⠻⠿⢤⣹⣇⠀⠀",
   "⠀⠀⣾⡭⢤⣤⣠⡞⠉⠉⢀⣀⣀⠀⠀⠀⠀⢀⣀⣀⠀⠈⢹⣦⣤⡤⠴⣿⠀⠀",
   "⠀⠀⣿⡇⢸⣿⣿⣇⠀⣼⣿⣿⣿⣷⠀⠀⣼⣿⣿⣿⣷⠀⢸⣿⣿⡇⠀⣿⠀⠀",
   "⠀⠀⢻⡇⠸⣿⣿⣿⡄⢿⣿⣿⣿⡿⠀⠀⢿⣿⣿⣿⡿⢀⣿⣿⣿⡇⢸⣿⠀⠀",
@@ -44,7 +56,15 @@ function App() {
     });
   };
 
-  const CommandButton = ({ command, icon: Icon, description }: { command: string; icon: any; description: string }) => (
+  const CommandButton = ({
+    command,
+    icon: Icon,
+    description,
+  }: {
+    command: string;
+    icon: any;
+    description: string;
+  }) => (
     <button
       onClick={() => handleCommand(command)}
       className="bg-gray-800/50 p-4 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow w-full text-left"
@@ -57,6 +77,7 @@ function App() {
     </button>
   );
 
+  // Replace these placeholders with real info/links if needed.
   const commands = {
     help: (
       <div className="mt-4 space-y-4">
@@ -160,7 +181,10 @@ function App() {
                 </div>
                 <div className="flex flex-wrap gap-2 ml-4">
                   {["Java", "Python", "JavaScript", "TypeScript", "C/C++"].map((skill) => (
-                    <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                    <span
+                      key={skill}
+                      className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors"
+                    >
                       {skill}
                     </span>
                   ))}
@@ -174,7 +198,10 @@ function App() {
                 </div>
                 <div className="flex flex-wrap gap-2 ml-4">
                   {["React", "Node.js", "Express", "Next.js", "FastAPI"].map((skill) => (
-                    <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                    <span
+                      key={skill}
+                      className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors"
+                    >
                       {skill}
                     </span>
                   ))}
@@ -188,7 +215,10 @@ function App() {
                 </div>
                 <div className="flex flex-wrap gap-2 ml-4">
                   {["Docker", "Kubernetes", "AWS", "GCP", "Cloudflare", "Redis", "Kafka"].map((skill) => (
-                    <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                    <span
+                      key={skill}
+                      className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors"
+                    >
                       {skill}
                     </span>
                   ))}
@@ -201,41 +231,20 @@ function App() {
     ),
     projects: (
       <div className="mt-4 space-y-4">
-        <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow">
-          <div className="flex items-center justify-between mb-4">
+        {/* Project 1 */}
+        <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors">
+          <div className="flex flex-col space-y-4">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center">
                 <Cpu className="h-5 w-5 text-emerald-400" />
               </div>
-              <p className="text-lg font-bold text-emerald-400">Cryptocurrency Exchange Platform</p>
+              <h3 className="text-lg font-bold text-emerald-400">Cryptocurrency Exchange Platform</h3>
             </div>
-            <div className="flex space-x-3">
-              <a 
-                href="https://exchange-ten-flame.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="View Live Site"
-                className="p-2 rounded-lg hover:bg-emerald-400/20 transition-all duration-200 group"
-              >
-                <ExternalLink className="h-5 w-5 text-emerald-400 group-hover:text-emerald-300" />
-              </a>
-              <a 
-                href="https://github.com/arjitchitkara/Exchange"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="View Source Code"
-                className="p-2 rounded-lg hover:bg-emerald-400/20 transition-all duration-200 group"
-              >
-                <Github className="h-5 w-5 text-emerald-400 group-hover:text-emerald-300" />
-              </a>
-            </div>
-          </div>
-          
-          <div className="space-y-4">
+            
             <p className="text-gray-300">
               A real-time cryptocurrency trading platform inspired by Binance, featuring live market data visualization and WebSocket integration.
             </p>
-            
+
             <div className="space-y-2">
               <div className="flex items-center space-x-2">
                 <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
@@ -251,7 +260,7 @@ function App() {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-2 mt-4">
+            <div className="flex flex-wrap gap-2">
               <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">Next.js 14</span>
               <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">TypeScript</span>
               <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">WebSocket</span>
@@ -259,8 +268,28 @@ function App() {
               <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">TailwindCSS</span>
               <span className="px-2 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-xs">Express</span>
             </div>
+
+            <div className="flex space-x-4 mt-2">
+              <button
+                onClick={() => window.open('https://exchange-ten-flame.vercel.app/', '_blank')}
+                className="flex items-center space-x-2 px-4 py-2 bg-emerald-400/20 text-emerald-400 rounded-lg hover:bg-emerald-400/30 transition-colors"
+              >
+                <ExternalLink className="h-4 w-4" />
+                <span>Live Demo</span>
+              </button>
+
+              <button
+                onClick={() => window.open('https://github.com/arjitchitkara/Exchange', '_blank')}
+                className="flex items-center space-x-2 px-4 py-2 bg-emerald-400/20 text-emerald-400 rounded-lg hover:bg-emerald-400/30 transition-colors"
+              >
+                <GithubIcon />
+                <span>Source Code</span>
+              </button>
+            </div>
           </div>
         </div>
+
+        {/* Project 2 */}
         <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-3">
@@ -269,9 +298,20 @@ function App() {
               </div>
               <p className="text-lg font-bold text-emerald-400">Project 2</p>
             </div>
-            <ExternalLink className="h-5 w-5 text-emerald-400" />
+            {/* Make this a clickable link as well */}
+            <a
+              href="https://example.com" // Change to your actual link
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="p-2 rounded-lg hover:bg-emerald-400/20 transition-all duration-200 group"
+            >
+              <ExternalLink className="h-5 w-5 text-emerald-400 group-hover:text-emerald-300" />
+            </a>
           </div>
-          <p className="text-gray-300 mb-4">Description of your second project showcasing your expertise in machine learning and data analysis.</p>
+          <p className="text-gray-300 mb-4">
+            Description of your second project showcasing your expertise in machine learning and data analysis.
+          </p>
           <div className="flex flex-wrap gap-2">
             <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">Python</span>
             <span className="px-3 py-1 bg-emerald-400/20 text-emerald-400 rounded-full text-sm">TensorFlow</span>
@@ -298,7 +338,10 @@ function App() {
               </div>
               <div className="flex flex-wrap gap-2 ml-4">
                 {["Java", "Python", "JavaScript", "TypeScript", "C/C++"].map((skill) => (
-                  <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                  <span
+                    key={skill}
+                    className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors"
+                  >
                     {skill}
                   </span>
                 ))}
@@ -312,7 +355,10 @@ function App() {
               </div>
               <div className="flex flex-wrap gap-2 ml-4">
                 {["React", "Next.js", "Node.js", "Express", "TailwindCSS", "REST APIs"].map((skill) => (
-                  <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                  <span
+                    key={skill}
+                    className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors"
+                  >
                     {skill}
                   </span>
                 ))}
@@ -326,7 +372,10 @@ function App() {
               </div>
               <div className="flex flex-wrap gap-2 ml-4">
                 {["AWS", "Docker", "Kubernetes", "CI/CD", "GCP", "Cloudflare"].map((skill) => (
-                  <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                  <span
+                    key={skill}
+                    className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors"
+                  >
                     {skill}
                   </span>
                 ))}
@@ -340,7 +389,10 @@ function App() {
               </div>
               <div className="flex flex-wrap gap-2 ml-4">
                 {["PostgreSQL", "MongoDB", "MySQL", "Redis", "Prisma"].map((skill) => (
-                  <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                  <span
+                    key={skill}
+                    className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors"
+                  >
                     {skill}
                   </span>
                 ))}
@@ -354,7 +406,10 @@ function App() {
               </div>
               <div className="flex flex-wrap gap-2 ml-4">
                 {["Git", "VS Code", "Postman", "Figma", "Jenkins", "Jira"].map((skill) => (
-                  <span key={skill} className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors">
+                  <span
+                    key={skill}
+                    className="px-2 py-1 bg-gray-700/50 text-gray-300 text-sm rounded border border-gray-600 hover:border-emerald-400/50 transition-colors"
+                  >
                     {skill}
                   </span>
                 ))}
@@ -368,7 +423,7 @@ function App() {
       <div className="mt-4">
         <div className="bg-gray-800/50 p-6 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow">
           <div className="space-y-4">
-            <a 
+            <a
               href="mailto:your.email@example.com"
               className="flex items-center space-x-3 text-gray-300 hover:text-emerald-400 transition-colors group p-3 rounded-lg hover:bg-emerald-400/10"
             >
@@ -377,7 +432,7 @@ function App() {
               </div>
               <span className="font-mono">your.email@example.com</span>
             </a>
-            <a 
+            <a
               href="https://github.com/yourusername"
               target="_blank"
               rel="noopener noreferrer"
@@ -388,7 +443,7 @@ function App() {
               </div>
               <span className="font-mono">github.com/yourusername</span>
             </a>
-            <a 
+            <a
               href="https://linkedin.com/in/yourusername"
               target="_blank"
               rel="noopener noreferrer"
@@ -413,21 +468,29 @@ function App() {
       return;
     }
 
-    const output = commands[normalizedCmd as keyof typeof commands] || (
-      <p className="text-red-400">Command not found. Type 'help' for available commands.</p>
-    );
+    // If command is recognized, display its component;
+    // otherwise, "Command not found".
+    const output =
+      commands[normalizedCmd as keyof typeof commands] || (
+        <p className="text-red-400">
+          Command not found. Type 'help' for available commands.
+        </p>
+      );
 
-    setHistory(prev => [...prev, { 
-      command: cmd, 
-      output,
-      timestamp: getTimestamp()
-    }]);
+    setHistory((prev) => [
+      ...prev,
+      {
+        command: cmd,
+        output,
+        timestamp: getTimestamp(),
+      },
+    ]);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
-    
+
     handleCommand(input);
     setInput('');
   };
@@ -441,6 +504,7 @@ function App() {
     return () => clearTimeout(timeoutId);
   }, [history]);
 
+  // Run "help" on first load
   useEffect(() => {
     const initialRender = sessionStorage.getItem('initialRender');
     if (!initialRender) {
@@ -449,13 +513,14 @@ function App() {
     }
   }, []);
 
+  // Animate the ASCII art
   useEffect(() => {
     const totalChars = asciiArtLines.reduce((acc, line) => acc + line.length, 0);
     let currentChar = 0;
-    
+
     const interval = setInterval(() => {
       if (currentChar < totalChars) {
-        setVisibleChars(prev => prev + 3);
+        setVisibleChars((prev) => prev + 3);
         currentChar += 3;
       } else {
         clearInterval(interval);
@@ -473,13 +538,12 @@ function App() {
 
   const getPartialArt = () => {
     let remainingChars = visibleChars;
-    const lines = asciiArtLines.map(line => {
-      if (remainingChars <= 0) return "";
+    const lines = asciiArtLines.map((line) => {
+      if (remainingChars <= 0) return '';
       const visiblePart = line.slice(0, remainingChars);
       remainingChars -= line.length;
       return visiblePart;
     });
-
     return lines.join('\n');
   };
 
@@ -489,7 +553,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 p-4 md:p-8 font-mono" onClick={focusInput}>
+    <div className="min-h-screen bg-gray-900 text-gray-100 p-4 md:p-8 font-mono">
       <div className="matrix-bg" />
       <div className="max-w-4xl mx-auto">
         {/* Terminal Image */}
@@ -506,10 +570,11 @@ function App() {
           {/* Terminal Header */}
           <div className="bg-gray-800/90 p-4 rounded-t-lg border-b border-gray-700 flex items-center">
             <div className="window-controls">
-              <div 
-                className="window-control close cursor-pointer hover:opacity-80 transition-opacity" 
+              {/* Close button, triggers refresh */}
+              <div
+                className="window-control close cursor-pointer hover:opacity-80 transition-opacity"
                 onClick={(e) => {
-                  e.stopPropagation(); // Prevent the click from bubbling to the parent
+                  e.stopPropagation(); // keep from interfering with child clicks
                   refreshPage();
                 }}
               />
@@ -524,7 +589,7 @@ function App() {
           </div>
 
           {/* Terminal Body */}
-          <div className="p-6 space-y-6 min-h-[600px] max-h-[80vh] overflow-y-auto">
+          <div className="p-6 space-y-6 min-h-[600px] max-h-[80vh] overflow-y-auto" onClick={() => focusInput()}>
             <pre className="text-emerald-400 text-sm leading-tight">
               {`${getPartialArt()}
 
@@ -532,11 +597,14 @@ function App() {
 [SYSTEM] Terminal access granted...
 [SYSTEM] Type 'help' to begin_`}
             </pre>
+
             <div className="flex items-center space-x-3 text-emerald-400">
               <Command className="h-6 w-6" />
-              <p className="font-bold text-lg typing-effect">Welcome to my portfolio! Type 'help' for available commands.</p>
+              <p className="font-bold text-lg typing-effect">
+                Welcome to my portfolio! Type 'help' for available commands.
+              </p>
             </div>
-            
+
             {history.map((entry, i) => (
               <div key={i} className="space-y-3">
                 <div className="flex items-center text-sm command-prompt">
@@ -551,6 +619,7 @@ function App() {
               </div>
             ))}
 
+            {/* Input line */}
             <form onSubmit={handleSubmit} className="flex items-center text-sm command-prompt">
               <span className="text-gray-500">[{getTimestamp()}]</span>
               <span className="text-emerald-400 ml-2">guest@portfolio</span>
@@ -566,17 +635,35 @@ function App() {
                 autoFocus
               />
             </form>
+            {/* Scroll anchor */}
+            <div ref={bottomRef} />
           </div>
         </div>
       </div>
-      <div ref={bottomRef} />
     </div>
   );
 }
 
-const GithubIcon = () => (
-  <svg viewBox="0 0 24 24" className="h-5 w-5 text-emerald-400" fill="currentColor">
-    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+/** Custom GitHub Icon (same as original) */
+const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    className={`h-5 w-5 text-emerald-400 ${props.className || ''}`}
+  >
+    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 
+             11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033
+             -1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.
+             089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.237 
+             1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.
+             305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.
+             469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 
+             1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.
+             02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297
+             -1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 
+             1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 
+             1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 
+             8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
   </svg>
 );
 
