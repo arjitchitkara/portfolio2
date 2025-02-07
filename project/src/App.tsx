@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, memo } from 'react';
 import {
   Terminal,
   Linkedin,
@@ -39,6 +39,21 @@ const asciiArtLines = [
   "⠹⣄⡀⠀⠐⡏⠀⠀⠉⠛⠿⣶⣿⣦⣤⣤⣤⣶⣷⡾⠟⠋⠀⠀⢸⡇⠀⢠⣤⠟",
   "⠀⠀⠳⢤⠼⠃⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠘⠷⢤⠾⠁⠀"
 ];
+
+// Memoize the command output component
+const CommandOutput = memo(({ entry, currentPath }) => (
+  <div className="space-y-3">
+    <div className="flex items-center text-sm command-prompt">
+      <span className="text-gray-500">[{entry.timestamp}]</span>
+      <span className="text-emerald-400 ml-2">@portfolio</span>
+      <span className="text-gray-500">:</span>
+      <span className="text-blue-400">{currentPath}</span>
+      <ChevronRight className="h-4 w-4 text-emerald-400 mx-1" />
+      <span className="text-gray-300">{entry.command}</span>
+    </div>
+    <div className="ml-4">{entry.output}</div>
+  </div>
+));
 
 function App() {
   const [input, setInput] = useState('');
@@ -640,12 +655,12 @@ function App() {
 
     const interval = setInterval(() => {
       if (currentChar < totalChars) {
-        setVisibleChars((prev) => prev + 3);
-        currentChar += 3;
+        setVisibleChars((prev) => prev + 5);
+        currentChar += 5;
       } else {
         clearInterval(interval);
       }
-    }, 5);
+    }, 10);
 
     return () => clearInterval(interval);
   }, []);
@@ -732,18 +747,8 @@ function App() {
               </p>
             </div>
 
-            {history.map((entry, i) => (
-              <div key={i} className="space-y-3">
-                <div className="flex items-center text-sm command-prompt">
-                  <span className="text-gray-500">[{entry.timestamp}]</span>
-                  <span className="text-emerald-400 ml-2">@portfolio</span>
-                  <span className="text-gray-500">:</span>
-                  <span className="text-blue-400">{currentPath}</span>
-                  <ChevronRight className="h-4 w-4 text-emerald-400 mx-1" />
-                  <span className="text-gray-300">{entry.command}</span>
-                </div>
-                <div className="ml-4">{entry.output}</div>
-              </div>
+            {history.slice(-10).map((entry, i) => (
+              <CommandOutput key={i} entry={entry} currentPath={currentPath} />
             ))}
 
             {/* Input line */}
