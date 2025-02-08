@@ -40,13 +40,19 @@ const asciiArtLines = [
   "⠀⠀⠳⢤⠼⠃⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠘⠷⢤⠾⠁⠀"
 ];
 
+// Add type definition
+type CommandOutputProps = {
+  entry: Command;
+  currentPath: string;
+};
+
 // Memoize the command output component
-const CommandOutput = memo(({ entry, currentPath }) => (
-  <div className="space-y-3">
+const CommandOutput = memo(({ entry, currentPath }: CommandOutputProps) => (
+  <div className="space-y-3" data-command={entry.command}>
     <div className="flex items-center text-sm command-prompt">
       <span className="text-gray-500">[{entry.timestamp}]</span>
       <span className="text-emerald-400 ml-2">@portfolio</span>
-      <span className="text-gray-500">:</span>
+      {/* <span className="text-gray-500">:</span>image.png */}
       <span className="text-blue-400">{currentPath}</span>
       <ChevronRight className="h-4 w-4 text-emerald-400 mx-1" />
       <span className="text-gray-300">{entry.command}</span>
@@ -62,6 +68,7 @@ function App() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [visibleChars, setVisibleChars] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
+  const initialRenderRef = useRef(false);
 
   const getTimestamp = () => {
     return new Date().toLocaleTimeString('en-US', { 
@@ -72,6 +79,31 @@ function App() {
     });
   };
 
+  const handleCommand = (cmd: string) => {
+    const normalizedCmd = cmd.toLowerCase().trim();
+    
+    if (normalizedCmd === 'clear') {
+      setHistory([]);
+      return;
+    }
+
+    // If command is recognized, display its component;
+    // otherwise, "Command not found".
+    const output =
+      commands[normalizedCmd as keyof typeof commands] || (
+        <p className="text-red-400">
+          Command not found. Type 'help' for available commands.
+        </p>
+      );
+
+    // Always append to history
+    setHistory((prev) => [...prev, {
+      command: cmd,
+      output,
+      timestamp: getTimestamp(),
+    }]);
+  };
+
   const CommandButton = ({
     command,
     icon: Icon,
@@ -80,18 +112,45 @@ function App() {
     command: string;
     icon: any;
     description: string;
-  }) => (
-    <button
-      onClick={() => handleCommand(command)}
-      className="bg-gray-800/50 p-4 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow w-full text-left"
-    >
-      <div className="flex items-center space-x-2 mb-2">
-        <Icon className="h-5 w-5 text-emerald-400" />
-        <p className="text-emerald-400 font-bold">{command}</p>
-      </div>
-      <p className="text-gray-400 text-sm">{description}</p>
-    </button>
-  );
+  }) => {
+    const handleClick = () => {
+      // Get current scroll position
+      const scrollPosition = window.scrollY;
+      
+      handleCommand(command);
+      
+      // Add help menu after command
+      setTimeout(() => {
+        handleCommand('help');
+        // After both command and help are added, scroll to the new command
+        setTimeout(() => {
+          const elements = document.querySelectorAll(`[data-command="${command}"]`);
+          const lastElement = elements[elements.length - 1];
+          if (lastElement) {
+            const rect = lastElement.getBoundingClientRect();
+            const absoluteTop = rect.top + window.scrollY;
+            window.scrollTo({
+              top: absoluteTop,
+              behavior: 'smooth'
+            });
+          }
+        }, 100);
+      }, 100);
+    };
+
+    return (
+      <button
+        onClick={handleClick}
+        className="bg-gray-800/50 p-4 rounded-lg border border-gray-700 hover:border-emerald-400/50 transition-colors glow w-full text-left"
+      >
+        <div className="flex items-center space-x-2 mb-2">
+          <Icon className="h-5 w-5 text-emerald-400" />
+          <p className="text-emerald-400 font-bold">{command}</p>
+        </div>
+        <p className="text-gray-400 text-sm">{description}</p>
+      </button>
+    );
+  };
 
   // Replace these placeholders with real info/links if needed.
   const commands = {
@@ -568,66 +627,45 @@ function App() {
             {/* Email */}
             <button
               onClick={() => window.open('mailto:arjitchitkarawork@gmail.com')}
-              className="w-full group p-3 rounded-lg bg-gray-700/50 hover:bg-gray-700/70 transition-colors flex items-center space-x-3"
+              className="w-full group p-3 rounded-lg bg-gray-700/50 hover:bg-gray-700/70 transition-colors"
             >
-              <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors">
-                <Mail className="h-5 w-5 text-emerald-400" />
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors shrink-0">
+                  <Mail className="h-5 w-5 text-emerald-400" />
+                </div>
+                <span className="font-mono text-sm break-all">arjitchitkarawork@gmail.com</span>
               </div>
-              <span className="font-mono">arjitchitkarawork@gmail.com</span>
             </button>
 
             {/* LinkedIn */}
             <button
               onClick={() => window.open('https://www.linkedin.com/in/arjitchitkara', '_blank')}
-              className="w-full group p-3 rounded-lg bg-gray-700/50 hover:bg-gray-700/70 transition-colors flex items-center space-x-3"
+              className="w-full group p-3 rounded-lg bg-gray-700/50 hover:bg-gray-700/70 transition-colors"
             >
-              <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors">
-                <Linkedin className="h-5 w-5 text-emerald-400" />
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors shrink-0">
+                  <Linkedin className="h-5 w-5 text-emerald-400" />
+                </div>
+                <span className="font-mono text-sm break-all">linkedin.com/in/arjitchitkara</span>
               </div>
-              <span className="font-mono">linkedin.com/in/arjitchitkara</span>
             </button>
 
             {/* GitHub */}
             <button
               onClick={() => window.open('https://github.com/arjitchitkara', '_blank')}
-              className="w-full group p-3 rounded-lg bg-gray-700/50 hover:bg-gray-700/70 transition-colors flex items-center space-x-3"
+              className="w-full group p-3 rounded-lg bg-gray-700/50 hover:bg-gray-700/70 transition-colors"
             >
-              <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors">
-                <Github className="h-5 w-5 text-emerald-400" />
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors shrink-0">
+                  <Github className="h-5 w-5 text-emerald-400" />
+                </div>
+                <span className="font-mono text-sm break-all">github.com/arjitchitkara</span>
               </div>
-              <span className="font-mono">github.com/arjitchitkara</span>
             </button>
           </div>
         </div>
       </div>
     ),
-  };
-
-  const handleCommand = (cmd: string) => {
-    const normalizedCmd = cmd.toLowerCase().trim();
-    
-    if (normalizedCmd === 'clear') {
-      setHistory([]);
-      return;
-    }
-
-    // If command is recognized, display its component;
-    // otherwise, "Command not found".
-    const output =
-      commands[normalizedCmd as keyof typeof commands] || (
-        <p className="text-red-400">
-          Command not found. Type 'help' for available commands.
-        </p>
-      );
-
-    setHistory((prev) => [
-      ...prev,
-      {
-        command: cmd,
-        output,
-        timestamp: getTimestamp(),
-      },
-    ]);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -639,12 +677,11 @@ function App() {
     }
   };
 
-  // Run "help" on first load
+  // Run "help" on every load
   useEffect(() => {
-    const initialRender = sessionStorage.getItem('initialRender');
-    if (!initialRender) {
+    if (!initialRenderRef.current) {
       handleCommand('help');
-      sessionStorage.setItem('initialRender', 'true');
+      initialRenderRef.current = true;
     }
   }, []);
 
@@ -685,15 +722,6 @@ function App() {
     window.location.reload();
   };
 
-  // Add the useEffect for smooth scrolling
-  useEffect(() => {
-    const terminal = document.querySelector('.terminal-window');
-    terminal?.scrollTo({
-      top: terminal.scrollHeight,
-      behavior: 'smooth'
-    });
-  }, [history]);
-
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 p-4 md:p-8 font-mono">
       <div className="matrix-bg" />
@@ -731,7 +759,7 @@ function App() {
           </div>
 
           {/* Terminal Body */}
-          <div className="p-6 space-y-6 min-h-[600px] max-h-[80vh] overflow-y-auto" onClick={() => focusInput()}>
+          <div className="p-6 space-y-6 min-h-[600px]" onClick={() => focusInput()}>
             <pre className="text-emerald-400 text-sm leading-tight">
               {`${getPartialArt()}
 
@@ -754,14 +782,16 @@ function App() {
             {/* Input line */}
             <form onSubmit={handleSubmit} className="flex items-center text-sm command-prompt">
               {isLoading && <span className="animate-pulse mr-2">⚡</span>}
-              <span className="text-emerald-400">➜</span>
-              <span className="text-blue-400 ml-2">~</span>
-              <span className="text-emerald-400 ml-2">$</span>
+              <span className="text-gray-500">[{getTimestamp()}]</span>
+              <span className="text-emerald-400 ml-2">@portfolio</span>
+              <span className="text-gray-500">:</span>
+              <span className="text-blue-400">{currentPath}</span>
+              <ChevronRight className="h-4 w-4 text-emerald-400 mx-1" />
               <input
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                className="flex-1 ml-2 bg-transparent text-gray-300 outline-none"
+                className="flex-1 bg-transparent text-gray-300 outline-none"
                 ref={inputRef}
               />
             </form>
