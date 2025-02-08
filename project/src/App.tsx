@@ -189,7 +189,7 @@ function App() {
             </div>
             <div className="ml-9 space-y-2">
               <p className="text-gray-200">University of Calgary</p>
-              <p className="text-gray-200">Bachelor of Science in Computer Science — GPA: 3.8</p>
+              <p className="text-gray-200">Bachelor of Science in Computer Science — GPA: 3.8/4</p>
               <ul className="list-disc text-gray-300 ml-5 space-y-1">
                 <li>Dean's List: 2022-2023, 2023-2024</li>
                 <li>Computer Science Alumni Chapter Undergraduate Scholarship (2024)</li>
@@ -677,6 +677,15 @@ function App() {
     }
   };
 
+  const handleTerminalClick = (e: React.MouseEvent | React.TouchEvent) => {
+    const target = e.target as HTMLElement;
+    // Only focus input if clicking/touching the command prompt area
+    if (target.closest('.command-prompt')) {
+      e.preventDefault(); // Prevent zoom on double-tap
+      inputRef.current?.focus();
+    }
+  };
+
   // Run "help" on every load
   useEffect(() => {
     if (!initialRenderRef.current) {
@@ -701,10 +710,6 @@ function App() {
 
     return () => clearInterval(interval);
   }, []);
-
-  const focusInput = () => {
-    inputRef.current?.focus();
-  };
 
   const getPartialArt = () => {
     let remainingChars = visibleChars;
@@ -759,7 +764,11 @@ function App() {
           </div>
 
           {/* Terminal Body */}
-          <div className="p-6 space-y-6 min-h-[600px]" onClick={() => focusInput()}>
+          <div 
+            className="p-6 space-y-6 min-h-[600px]" 
+            onClick={handleTerminalClick}
+            onTouchStart={handleTerminalClick}
+          >
             <pre className="text-emerald-400 text-sm leading-tight">
               {`${getPartialArt()}
 
