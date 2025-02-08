@@ -46,7 +46,7 @@ const CommandOutput = memo(({ entry, currentPath }) => (
     <div className="flex items-center text-sm command-prompt">
       <span className="text-gray-500">[{entry.timestamp}]</span>
       <span className="text-emerald-400 ml-2">@portfolio</span>
-      <span className="text-gray-500">:</span>
+      <span className="text-gray-500">:</span>image.png
       <span className="text-blue-400">{currentPath}</span>
       <ChevronRight className="h-4 w-4 text-emerald-400 mx-1" />
       <span className="text-gray-300">{entry.command}</span>
@@ -621,34 +621,40 @@ function App() {
             {/* Email */}
             <button
               onClick={() => window.open('mailto:arjitchitkarawork@gmail.com')}
-              className="w-full group p-3 rounded-lg bg-gray-700/50 hover:bg-gray-700/70 transition-colors flex items-center space-x-3"
+              className="w-full group p-3 rounded-lg bg-gray-700/50 hover:bg-gray-700/70 transition-colors"
             >
-              <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors">
-                <Mail className="h-5 w-5 text-emerald-400" />
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors shrink-0">
+                  <Mail className="h-5 w-5 text-emerald-400" />
+                </div>
+                <span className="font-mono text-sm break-all">arjitchitkarawork@gmail.com</span>
               </div>
-              <span className="font-mono">arjitchitkarawork@gmail.com</span>
             </button>
 
             {/* LinkedIn */}
             <button
               onClick={() => window.open('https://www.linkedin.com/in/arjitchitkara', '_blank')}
-              className="w-full group p-3 rounded-lg bg-gray-700/50 hover:bg-gray-700/70 transition-colors flex items-center space-x-3"
+              className="w-full group p-3 rounded-lg bg-gray-700/50 hover:bg-gray-700/70 transition-colors"
             >
-              <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors">
-                <Linkedin className="h-5 w-5 text-emerald-400" />
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors shrink-0">
+                  <Linkedin className="h-5 w-5 text-emerald-400" />
+                </div>
+                <span className="font-mono text-sm break-all">linkedin.com/in/arjitchitkara</span>
               </div>
-              <span className="font-mono">linkedin.com/in/arjitchitkara</span>
             </button>
 
             {/* GitHub */}
             <button
               onClick={() => window.open('https://github.com/arjitchitkara', '_blank')}
-              className="w-full group p-3 rounded-lg bg-gray-700/50 hover:bg-gray-700/70 transition-colors flex items-center space-x-3"
+              className="w-full group p-3 rounded-lg bg-gray-700/50 hover:bg-gray-700/70 transition-colors"
             >
-              <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors">
-                <Github className="h-5 w-5 text-emerald-400" />
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-emerald-400/20 flex items-center justify-center group-hover:bg-emerald-400/30 transition-colors shrink-0">
+                  <Github className="h-5 w-5 text-emerald-400" />
+                </div>
+                <span className="font-mono text-sm break-all">github.com/arjitchitkara</span>
               </div>
-              <span className="font-mono">github.com/arjitchitkara</span>
             </button>
           </div>
         </div>
