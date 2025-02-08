@@ -40,8 +40,14 @@ const asciiArtLines = [
   "⠀⠀⠳⢤⠼⠃⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠘⠷⢤⠾⠁⠀"
 ];
 
+// Add type definition
+type CommandOutputProps = {
+  entry: Command;
+  currentPath: string;
+};
+
 // Memoize the command output component
-const CommandOutput = memo(({ entry, currentPath }) => (
+const CommandOutput = memo(({ entry, currentPath }: CommandOutputProps) => (
   <div className="space-y-3" data-command={entry.command}>
     <div className="flex items-center text-sm command-prompt">
       <span className="text-gray-500">[{entry.timestamp}]</span>
