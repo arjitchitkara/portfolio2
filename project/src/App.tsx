@@ -52,7 +52,7 @@ const CommandOutput = memo(({ entry, currentPath }: CommandOutputProps) => (
     <div className="flex items-center text-sm command-prompt">
       <span className="text-gray-500">[{entry.timestamp}]</span>
       <span className="text-emerald-400 ml-2">@portfolio</span>
-      <span className="text-gray-500">:</span>image.png
+      {/* <span className="text-gray-500">:</span>image.png */}
       <span className="text-blue-400">{currentPath}</span>
       <ChevronRight className="h-4 w-4 text-emerald-400 mx-1" />
       <span className="text-gray-300">{entry.command}</span>
